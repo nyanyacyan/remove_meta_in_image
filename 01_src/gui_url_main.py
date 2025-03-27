@@ -26,13 +26,8 @@ class GuiUrlMain(QWidget):
         # 説明書き部分のラベル
         self.dir_label = QLabel(explain)
 
-        # 選んだPathを表示
-        self.dir_path_display = QLineEdit()  # Pathの表示させるメソッド
-        self.dir_path_display.setReadOnly(True)
-
-        # pathボタン
-        self.dir_button = QPushButton("ファイル選択")  # ボタンを定義
-        self.dir_button.clicked.connect(self.select_directory)
+        # url入力欄
+        self.url_input = QLineEdit()  # 入力するメソッド
 
         # 実行ボタン
         self.submit_button = QPushButton("実行")
@@ -50,13 +45,12 @@ class GuiUrlMain(QWidget):
         layout = QVBoxLayout()
 
         # Pathを選択するレイアウト
-        dir_layout = QHBoxLayout()  # 横並びにするレイアウト
-        dir_layout.addWidget(self.dir_path_display)
-        dir_layout.addWidget(self.dir_button)
+        url_layout = QHBoxLayout()  # 横並びにするレイアウト
+        url_layout.addWidget(self.url_input)
 
         # Pathを選択するレイアウトを基礎レイアウトに追加
         layout.addWidget(self.dir_label)
-        layout.addLayout(dir_layout)
+        layout.addLayout(url_layout)
 
         # ボタンの行のレイアウト
         button_layout = QHBoxLayout()  # 横並びにするレイアウト
@@ -102,8 +96,8 @@ class GuiUrlMain(QWidget):
 
 if __name__ == "__main__":
     # 入力欄
-    window_title = "Meta情報除去ツール"
-    explain = "Meta情報を除去したいファイルを選択して下さい。"
+    window_title = "YouTube コメント抽出ツール"
+    explain = "Youtubeコメント抽出したい対象の動画のURLを入力して下さい。"
     position_x = 30
     position_y = 30
     size_x = 500

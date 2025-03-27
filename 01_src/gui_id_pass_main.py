@@ -24,11 +24,18 @@ class GuiIdPassMain(QWidget):
 
         #? --- ディレクトリ選択 ---
         # 説明書き部分のラベル
-        self.dir_label = QLabel(explain)
+        self.explain_label = QLabel(explain)
 
-        # 選んだPathを表示
-        self.dir_path_display = QLineEdit()  # Pathの表示させるメソッド
-        self.dir_path_display.setReadOnly(True)
+
+        # id入力欄
+        self.id_label = QLabel("IDを入力して下さい。")
+        self.id_input = QLineEdit()  # 入力するメソッド
+        self.id_input.setFixedWidth(300)
+
+        # pass入力欄
+        self.pass_label = QLabel("パスワードを入力して下さい。")
+        self.pass_input = QLineEdit()  # 入力するメソッド
+        self.pass_input.setFixedWidth(300)
 
         # pathボタン
         self.dir_button = QPushButton("ファイル選択")  # ボタンを定義
@@ -49,14 +56,22 @@ class GuiIdPassMain(QWidget):
         # 基礎になるレイアウト　→　ここに追加していく
         layout = QVBoxLayout()
 
-        # Pathを選択するレイアウト
-        dir_layout = QHBoxLayout()  # 横並びにするレイアウト
-        dir_layout.addWidget(self.dir_path_display)
-        dir_layout.addWidget(self.dir_button)
+        # ラベルをレイアウトに追加
+        layout.addWidget(self.explain_label)
 
-        # Pathを選択するレイアウトを基礎レイアウトに追加
-        layout.addWidget(self.dir_label)
-        layout.addLayout(dir_layout)
+        # ID入力欄をレイアウトに追加
+        id_layout = QHBoxLayout()  # 横並びにするレイアウト
+        id_layout.addWidget(self.id_label)
+        id_layout.addWidget(self.id_input)
+
+        # pass入力欄をレイアウトに追加
+        pass_layout = QHBoxLayout()  # 横並びにするレイアウト
+        pass_layout.addWidget(self.pass_label)
+        pass_layout.addWidget(self.pass_input)
+
+        # ボタンレイアウトを基礎レイアウトに追加
+        layout.addLayout(id_layout)
+        layout.addLayout(pass_layout)
 
         # ボタンの行のレイアウト
         button_layout = QHBoxLayout()  # 横並びにするレイアウト
@@ -102,12 +117,12 @@ class GuiIdPassMain(QWidget):
 
 if __name__ == "__main__":
     # 入力欄
-    window_title = "Meta情報除去ツール"
-    explain = "Meta情報を除去したいファイルを選択して下さい。"
+    window_title = "〇〇自動化ツール"
+    explain = "〇〇の〇〇自動抽出ツール"
     position_x = 30
     position_y = 30
     size_x = 500
-    size_y = 150
+    size_y = 200
 
     app = QApplication(sys.argv)
     window = GuiIdPassMain(window_title=window_title, position_x=position_x, explain=explain, position_y=position_y, size_x=size_x, size_y=size_y)
